@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p project
+#mkdir -p project
 
 log_file="project/upload_csv_to_s3.log"
 
@@ -27,11 +27,12 @@ install_packages() {
 
 # Function to download the zip file
 download_zip_file() {
-    local project_dir="/project"
+    local project_dir="project/"
     log_message "Downloading the zip file"
     mkdir "$project_dir"
     cd "$project_dir" || exit 1
-    wget -q https://github.com/adribatr/uoc_m6/blob/main/csv_to_s3.zip
+    # wget -q https://github.com/dogukannulu/send_data_to_aws_services/raw/main/csv_to_s3/csv_to_s3.zip
+    wget -q https://github.com/adribatr/uoc_m6/raw/main/csv_to_s3.zip
 }
 
 # Function to unzip the files
