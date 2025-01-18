@@ -30,7 +30,7 @@ download_zip_file() {
     log_message "Downloading the zip file"
     mkdir "$project_dir"
     cd "$project_dir" || exit 1
-    wget -q https://github.com/adribatr/uoc_m6/csv_to_s3.zip
+    wget -q https://github.com/adribatr/uoc_m6/blob/main/csv_to_s3.zip
 }
 
 # Function to unzip the files
