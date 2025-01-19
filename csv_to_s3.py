@@ -14,26 +14,6 @@ class S3Uploader:
         self.s3_client = boto3.client('s3')
         self.region = region
 
-    def create_bucket(self, name):
-        """
-        Create an S3 bucket with the specified region and name
-        """
-        try:
-            self.s3_client.create_bucket(
-                Bucket=name,
-                CreateBucketConfiguration={
-                    'LocationConstraint': self.region
-                }
-            )
-            logger.info(f"Bucket '{name}' created successfully.")
-        except ClientError as e:
-            if e.response['Error']['Code'] == 'BucketAlreadyOwnedByYou':
-                logger.warning(f"Bucket '{name}' already exists and is owned by you.")
-            elif e.response['Error']['Code'] == 'BucketAlreadyExists':
-                logger.warning(f"Bucket '{name}' already exists and is owned by someone else.")
-            else:
-                logger.warning("An unexpected error occured while creating the S3 bucket:", e)
-
     def put_object(self, bucket_name, object_key, csv_data):
         """
         Upload the CSV data into the specified S3 bucket
@@ -66,8 +46,6 @@ def main():
     s3_uploader = S3Uploader()
     s3_uploader.create_bucket(name=args.bucket_name)
     s3_uploader.put_object(bucket_name=args.bucket_name, object_key=args.object_key, csv_data=csv_data)
-
-
 
 if __name__ == '__main__':
     main()

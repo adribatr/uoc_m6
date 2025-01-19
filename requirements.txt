@@ -4,4 +4,3 @@ pyarrow
 regex
 sqlalchemy
 pymysql
-mysql

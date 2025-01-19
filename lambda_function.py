@@ -1,11 +1,10 @@
 import io
 import os
 import re
-import pandas as pd
 import boto3
 import logging
 import pymysql
-import mysql
+import pandas as pd
 from sqlalchemy import create_engine
 from botocore.exceptions import ClientError
 
